@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->string('email');
             $table->date('birthDate');
-            $table->unsignedInteger('address_id');
+            $table->unsignedBigInteger('address_id');
             $table->timestamps();
         });
 
