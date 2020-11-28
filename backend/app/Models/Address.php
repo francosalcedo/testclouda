@@ -18,6 +18,11 @@ class Address extends Model
         'city',
         'country',
         'postalcode',
+        'user_id'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

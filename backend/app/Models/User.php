@@ -16,7 +16,6 @@ class User extends Model
         'lastname',
         'email',
         'birthDate',
-        'address_id',
     ];
 
     protected $with = ['address'];

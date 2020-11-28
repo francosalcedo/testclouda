@@ -29,7 +29,11 @@ class UserController extends Controller
     {
         $newUser = User::create($request->all());
 
-        return response()->json($newUser, 201);
+        if($request->address) {
+            $newUser->address()->save( (new Address($request->address)) );
+        }
+
+        return response()->json(User::find($newUser->id), 201);
     }
 
     /**
@@ -53,7 +57,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($request->id);
+        $user->update($request->all());
+
+        if($request->address) {
+            $user->address()->update($request->address);
+        }
+
+        return response()->json(User::find($user->id), 201);
     }
 
     /**
@@ -62,7 +73,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $user = User::find($id);
 
@@ -70,6 +81,7 @@ class UserController extends Controller
             return response()->json('User not found', 404);
         }
 
+        $user->address()->delete();
         $user->delete();
         return response()->json('OK', 200);
     }
