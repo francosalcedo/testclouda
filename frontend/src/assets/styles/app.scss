@@ -1,0 +1,9 @@
+// Global
+@import './globals/reset';
+@import './globals/variables';
+@import './globals/mixins';
+@import './globals/page';
+
+// Pages
+@import './views/app';
+@import './views/list';
