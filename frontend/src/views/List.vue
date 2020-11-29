@@ -3,6 +3,7 @@
     <table class="section-list__table">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Correo</th>
@@ -21,6 +22,7 @@
             v-for="user in allUsers"
             v-bind:key="user.key"
         >
+          <td>{{ user.id }}</td>
           <td>{{ user.firstname }}</td>
           <td>{{ user.lastname }}</td>
           <td>{{ user.email }}</td>

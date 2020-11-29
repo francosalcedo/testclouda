@@ -5,8 +5,8 @@
         <h1>Usuarios - CloudAPPi</h1>
       </header>
       <nav class="main-nav">
-        <router-link to="/">Listado</router-link>
-        <router-link to="/add">Nuevo Usuario</router-link>
+        <router-link to="/" class="list">Listado</router-link>
+        <router-link to="/add" class="add">Nuevo Usuario</router-link>
       </nav>
       <router-view/>
     </div>

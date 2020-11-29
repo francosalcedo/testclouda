@@ -86,12 +86,13 @@
                         top: 0;
                     }
 
-                    &:nth-child(1):before { content: "Nombre";}
-                    &:nth-child(2):before { content: "Apellido";}
-                    &:nth-child(3):before { content: "Correo";}
-                    &:nth-child(4):before { content: "Cumpleaños";}
-                    &:nth-child(5):before { content: "Dirección";}
-                    &:nth-child(6):before { content: "Acciones";}
+                    &:nth-child(1):before { content: "ID";}
+                    &:nth-child(2):before { content: "Nombre";}
+                    &:nth-child(3):before { content: "Apellido";}
+                    &:nth-child(4):before { content: "Correo";}
+                    &:nth-child(5):before { content: "Cumpleaños";}
+                    &:nth-child(6):before { content: "Dirección";}
+                    &:nth-child(7):before { content: "Acciones";}
                 }        
             }
         
