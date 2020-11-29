@@ -2,48 +2,55 @@
   <div class="section-form">
     <h1 class="section-form__title">Editar: {{ currentUser.firstname }} {{ currentUser.lastname }}</h1>
 
-    <form class="form" @submit="onSubmit">
+    <form class="form" @submit.prevent="validateBeforeSubmit">
       <div class="form__elem">
         <label for="formFirstName">Nombre: </label>
-        <input id="formFirstName" type="text" v-model="currentUser.firstname" required>
+        <input name="formFirstName" id="formFirstName" data-vv-as="Nombre" type="text" v-model="currentUser.firstname" v-validate="'required'">
+        <span>{{ errors.first('formFirstName') }}</span>
       </div>
       <div class="form__elem">
         <label for="formFirstLastName">Apellido: </label>
-        <input id="formFirstLastName" type="text" v-model="currentUser.lastname" required>
+        <input name="formFirstLastName" id="formFirstLastName" data-vv-as="Apellido" type="text" v-model="currentUser.lastname" v-validate="'required'">
+        <span>{{ errors.first('formFirstLastName') }}</span>
       </div>
       <div class="form__elem">
         <label for="formFirstEmail">Correo: </label>
-        <input id="formFirstEmail" type="email" v-model="currentUser.email" required>
+        <input name="formFirstEmail" id="formFirstEmail" data-vv-as="Correo" type="email" v-model="currentUser.email" v-validate="'required|email'">
+        <span>{{ errors.first('formFirstEmail') }}</span>
       </div>
       <div class="form__elem">
         <label for="formFirstBirthDate">Fecha de cumpleaños: </label>
-        <input id="formFirstBirthDate" type="date" v-model="currentUser.birthDate" required>
+        <input name="formFirstBirthDate" id="formFirstBirthDate" data-vv-as="Fecha de cumpleaños" type="date" v-model="currentUser.birthDate" v-validate="'required'">
+        <span>{{ errors.first('formFirstBirthDate') }}</span>
       </div>
-
       <div class="form__elem">
         <label for="formFirstStreet">Dirección: </label>
-        <input id="formFirstStreet" type="text" v-model="currentUser.address.street" required>
+        <input name="formFirstStreet" id="formFirstStreet" data-vv-as="Dirección" type="text" v-model="currentUser.address.street" v-validate="'required'">
+        <span>{{ errors.first('formFirstStreet') }}</span>
       </div>
       <div class="form__elem">
         <label for="formFirstCity">Ciudad: </label>
-        <input id="formFirstCity" type="text" v-model="currentUser.address.city" required>
+        <input name="formFirstCity" id="formFirstCity" data-vv-as="Ciudad" type="text" v-model="currentUser.address.city" v-validate="'required'">
+        <span>{{ errors.first('formFirstCity') }}</span>
       </div>
       <div class="form__elem">
         <label for="formFirstCountry">País: </label>
-        <select v-model="currentUser.address.country" id="formFirstCountry" required>
+        <select v-model="currentUser.address.country" name="formFirstCountry" id="formFirstCountry" data-vv-as="País" v-validate="'required'">
           <option value="ES">ES</option>
           <option value="UK">UK</option>
           <option value="DE">DE</option>
           <option value="US">US</option>
         </select>
+        <span>{{ errors.first('formFirstCity') }}</span>
       </div>
       <div class="form__elem">
         <label for="formFirstCodePostal">Codigo Postal: </label>
-        <input id="formFirstCodePostal" type="text" v-model="currentUser.address.postalcode" required>
+        <input name="formFirstCodePostal" id="formFirstCodePostal" data-vv-as="Codigo postal" type="text" v-model="currentUser.address.postalcode" v-validate="'required'">
+        <span>{{ errors.first('formFirstCodePostal') }}</span>
       </div>
 
       <div class="form__elem">
-        <button class="btn" @click="onSubmit">Guardar</button>
+        <button class="btn" type="submit">Guardar</button>
       </div>
     </form>
   </div>
@@ -58,10 +65,13 @@ export default {
       'fetchUser',
       'updateUser',
     ]),
-    onSubmit(event) {
-      event.preventDefault();
-      this.updateUser(this.currentUser);
-      this.$router.push('/');
+    validateBeforeSubmit() {
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.updateUser(this.currentUser);
+          this.$router.push('/');
+        }
+      });
     }
   },
   computed: mapGetters(['currentUser']),
