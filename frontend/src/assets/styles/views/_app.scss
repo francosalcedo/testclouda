@@ -1,10 +1,11 @@
-#app {
+.container {
     max-width: 1440px;
     backdrop-filter: blur(5px);
     background-color: $app-color-bg;
     border-radius: 10px;
     padding: 15px;
     margin: 120px auto;
+    margin-bottom: 0;
 
     @include break(mobile) {
         margin-top: 100px;

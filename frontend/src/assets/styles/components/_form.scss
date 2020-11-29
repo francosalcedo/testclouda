@@ -1,0 +1,51 @@
+.form {
+    &__elem {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin-bottom: 10px;
+
+        @include break(mobile) {
+        }
+
+        > label {
+            display: block;
+            margin: 5px;
+            font-size: .9rem;
+        }
+
+        > input,
+        select {
+            margin: 5px;
+            height: 40px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            color: $white;
+            background-color: $list-color-table-dark;
+            padding: 10px;
+
+            @include break(mobile) {
+            }
+        }
+
+        .btn {
+            height: 40px;
+            margin: 5px;
+            font-size: 1rem;
+        }
+    }
+}
+
+.section-form {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+
+    &__title {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+}

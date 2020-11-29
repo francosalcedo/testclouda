@@ -12,17 +12,23 @@
         </tr>
       </thead>
       <tbody>
+        <tr v-if="allUsers.length == 0">
+          <td>
+            No hay usuarios
+          </td>
+        </tr>
         <tr
             v-for="user in allUsers"
             v-bind:key="user.key"
         >
           <td>{{ user.firstname }}</td>
-          <td>{{ user.firstname }}</td>
-          <td>{{ user.firstname }}</td>
-          <td>{{ user.firstname }}</td>
-          <td>{{ user.firstname }}</td>
+          <td>{{ user.lastname }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.birthDate }}</td>
+          <td>{{ user.address.country }}, {{ user.address.city }}, {{ user.address.street }}</td>
           <td>
-            x x
+            <router-link :to="{name: 'edit', params: {id: user.id}}" tag="button" class="btn btn-edit">Editar</router-link>
+            <button class="btn btn-delete" @click="deleteUser(user.id)">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -35,19 +41,20 @@
 
 export default {
   name: 'List',
-  components: {
-  }
 }
 </script>
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: "Users",
+  name: 'Users',
   methods:{
-    ...mapActions(["fetchUsers"])
+    ...mapActions([
+      'fetchUsers',
+      'deleteUser',
+    ])
   },
-  computed: mapGetters(["allUsers"]),
+  computed: mapGetters(['allUsers']),
   created() {
     this.fetchUsers();
   }

@@ -18,6 +18,11 @@ class User extends Model
         'birthDate',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     protected $with = ['address'];
 
     public function address()

@@ -21,6 +21,12 @@ class Address extends Model
         'user_id'
     ];
 
+    protected $hidden = [
+        'user_id',
+        'created_at',
+        'updated_at',
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');

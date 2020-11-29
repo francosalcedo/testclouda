@@ -4,6 +4,10 @@
 @import './globals/mixins';
 @import './globals/page';
 
+// Components
+@import './components/button';
+@import './components/form';
+
 // Pages
 @import './views/app';
 @import './views/list';
