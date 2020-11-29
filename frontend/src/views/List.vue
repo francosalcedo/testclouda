@@ -1,6 +1,32 @@
 <template>
   <div class="section-list">
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, impedit aliquam sapiente dolorum inventore facilis vitae assumenda autem dolores mollitia iste fugiat odit alias excepturi veritatis consectetur quasi. Voluptas, obcaecati!
+    <table class="section-list__table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo</th>
+          <th>Cumpleaños</th>
+          <th>Dirección</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+            v-for="user in allUsers"
+            v-bind:key="user.key"
+        >
+          <td>{{ user.firstname }}</td>
+          <td>{{ user.firstname }}</td>
+          <td>{{ user.firstname }}</td>
+          <td>{{ user.firstname }}</td>
+          <td>{{ user.firstname }}</td>
+          <td>
+            x x
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -12,4 +38,18 @@ export default {
   components: {
   }
 }
+</script>
+<script>
+import { mapGetters, mapActions } from 'vuex';
+
+export default {
+  name: "Users",
+  methods:{
+    ...mapActions(["fetchUsers"])
+  },
+  computed: mapGetters(["allUsers"]),
+  created() {
+    this.fetchUsers();
+  }
+};
 </script>
