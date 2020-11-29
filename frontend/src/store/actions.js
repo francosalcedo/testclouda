@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const resource_url = 'http://lumen.test/users';
+export const resource_url = '';
 
 const actions = {
     async fetchUsers({ commit }) {
